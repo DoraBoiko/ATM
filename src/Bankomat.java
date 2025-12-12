@@ -10,7 +10,6 @@ public class Bankomat {
         this.screen = screen;
         this.scanner = scanner;
 
-        // Вводить користувач — ПРАВИЛЬНО!
         String pin = screen.getInput(scanner, "Створіть PIN:");
         double balance = screen.getDouble(scanner, "Введіть початковий баланс:");
 
