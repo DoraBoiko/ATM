@@ -2,17 +2,16 @@ import java.util.Scanner;
 
 public class Bankomat {
 
-    private BankAccount account;
-    private Screen screen;
-    private Scanner scanner;
+    private final BankAccount account;
+    private final Screen screen;
+    private final Scanner scanner;
 
     public Bankomat(Screen screen, Scanner scanner) {
         this.screen = screen;
         this.scanner = scanner;
 
-        // Вводить користувач — ПРАВИЛЬНО!
-        String pin = screen.getInput(scanner, "Створіть PIN:");
-        double balance = screen.getDouble(scanner, "Введіть початковий баланс:");
+        String pin = screen.getPinInput(scanner, "Створіть PIN:");
+        double balance = screen.getPositiveDouble(scanner, "Введіть початковий баланс:");
 
         this.account = new BankAccount(pin, balance);
     }
@@ -60,13 +59,13 @@ public class Bankomat {
     }
 
     private void deposit() {
-        double sum = screen.getDouble(scanner, "Введіть суму:");
+        double sum = screen.getPositiveDouble(scanner, "Введіть суму:");
         account.deposit(sum);
         screen.show("Поповнено на " + sum + " грн");
     }
 
     private void withdraw() {
-        double sum = screen.getDouble(scanner, "Сума зняття:");
+        double sum = screen.getPositiveDouble(scanner, "Сума зняття:");
         if (account.withdraw(sum)) {
             screen.show("Знято " + sum + " грн");
         } else {

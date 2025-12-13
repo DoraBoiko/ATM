@@ -1,5 +1,5 @@
 public class BankAccount {
-    private String pin;
+    private final String pin;
     private double balance;
 
     public BankAccount(String pin, double balance) {

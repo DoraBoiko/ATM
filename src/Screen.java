@@ -6,13 +6,47 @@ public class Screen {
         System.out.println(message);
     }
 
-    public String getInput(Scanner scanner, String message) {
-        System.out.print(message + " ");
-        return scanner.nextLine();
+
+    private boolean isNumeric(String input) {
+        return input != null && input.matches("\\d+");
     }
 
-    public double getDouble(Scanner scanner, String message) {
-        System.out.print(message + " ");
-        return Double.parseDouble(scanner.nextLine());
+    public String getPinInput(Scanner scanner, String message) {
+        String input;
+
+        do {
+            show(message);
+            input = scanner.nextLine().trim();
+
+            if (isNumeric(input) && !input.isEmpty()) {
+                return input;
+            } else {
+                show("Помилка: Ввід має містити лише цифри.");
+            }
+        } while (true);
+    }
+
+    public double getPositiveDouble(Scanner scanner, String message) {
+        double result;
+
+        do {
+            show(message);
+
+            while (!scanner.hasNextDouble()) {
+                String invalidInput = scanner.next();
+                show("Помилка вводу: '" + invalidInput + "' не є коректним числом. Спробуйте ще раз.");
+                show(message);
+            }
+
+            result = scanner.nextDouble();
+            scanner.nextLine();
+
+            if (result > 0.0) {
+                return result;
+            } else {
+                show("Помилка: Сума має бути більшою за нуль.");
+            }
+
+        } while (true);
     }
 }
