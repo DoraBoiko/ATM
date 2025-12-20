@@ -1,3 +1,5 @@
+package atm;
+
 public class BankAccount {
     private final String pin;
     private double balance;
@@ -9,6 +11,10 @@ public class BankAccount {
 
     public boolean checkPin(String inputPin) {
         return this.pin.equals(inputPin);
+    }
+
+    public String getPin() {
+        return pin;
     }
 
     public double getBalance() {
